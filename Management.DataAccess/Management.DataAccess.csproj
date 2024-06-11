@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Management.Core\Management.Core.csproj" />
+    <ProjectReference Include="..\Management.Entity\Management.Entity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using Management.DataAccess.Concrete.EntityFramework.Contexts;
 using Management.WebUI.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Configuration.AddUserSecrets<Program>();
 
 var app = builder.Build();
 
