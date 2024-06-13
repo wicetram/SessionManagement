@@ -2,18 +2,23 @@
 
 namespace Management.Core.Utility
 {
-    public  static class ConfigurationService
+    public static class ConfigurationService
     {
-        private static IConfiguration? _configuration;
-
-        public static void Initialize(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
+        /// <summary>
+        /// Parametrik olarak kayıtlı olan ConnectionString değerini getirir
+        /// </summary>
+        /// <param name="name">MerchantDb, VPosDb, BillPayDb</param>
+        /// <returns></returns>
         public static string? GetConnectionString(string name)
         {
-            return _configuration?.GetConnectionString(name);
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+
+            string? connection = configuration.GetConnectionString(name);
+            return connection;
         }
     }
 }

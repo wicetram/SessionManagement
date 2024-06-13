@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Management.Entity.Concrete
 {
-    public class MerchantDto : IEntity
+    public class Merchant : IEntity
     {
         [Key]
         public int Id { get; set; }
@@ -11,6 +11,7 @@ namespace Management.Entity.Concrete
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Email { get; set; }
+        public string? Password { get; set; }
         public string? Phone { get; set; }
         public string? CitizenNo { get; set; }
         public bool Status { get; set; }

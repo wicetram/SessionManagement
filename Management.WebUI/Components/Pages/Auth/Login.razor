@@ -1,0 +1,68 @@
+﻿@page "/login"
+@using Management.WebUI.Components.Layout
+
+@layout EmptyLayout
+
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="row w-100">
+        <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+            <img src="/images/illustration.png" class="img-fluid" alt="Illustration" />
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="card shadow-lg p-4" style="max-width: 450px; width: 100%; border-radius: 10px;">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Sign In</h3>
+                    <p class="text-center text-muted mb-4">Your Social Campaigns</p>
+                    <div class="d-flex justify-content-center mb-4">
+                        <button class="btn btn-outline-dark mx-1">
+                            <i class="fab fa-google"></i> Sign in with Google
+                        </button>
+                        <button class="btn btn-outline-dark mx-1">
+                            <i class="fab fa-apple"></i> Sign in with Apple
+                        </button>
+                    </div>
+                    <div class="text-center text-muted mb-4">Or with email</div>
+                    <EditForm Model="@loginModel" OnValidSubmit="@HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="form-group">
+                            <label for="email" class="text-muted">Email</label>
+                            <InputText class="form-control" id="email" @bind-Value="loginModel.Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-muted">Password</label>
+                            <InputText class="form-control" id="password" type="password" @bind-Value="loginModel.Password" />
+                        </div>
+                        <div class="form-group text-right">
+                            <a href="#" class="text-muted">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </EditForm>
+                    <div class="text-center mt-4">
+                        <a href="#" class="text-muted">Not a Member yet? Sign up</a>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <img src="~/images/flags/us.png" class="img-fluid" style="width: 30px;" alt="Language" />
+                    <p class="text-muted mt-2">English</p>
+                    <div class="d-flex justify-content-center mt-2">
+                        <a href="#" class="text-muted mx-2">Terms</a>
+                        <a href="#" class="text-muted mx-2">Plans</a>
+                        <a href="#" class="text-muted mx-2">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private LoginRequestDto loginModel = new();
+
+    private void HandleValidSubmit()
+    {
+        // Handle login
+    }
+}

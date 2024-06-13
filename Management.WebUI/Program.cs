@@ -1,4 +1,6 @@
-using Management.DataAccess.Concrete.EntityFramework.Contexts;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Management.Business.DependencyResolvers.Autofac;
 using Management.WebUI.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Configuration.AddUserSecrets<Program>();
+// Use Autofac as the service provider factory.
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+// Configure Autofac container.
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterModule(new AutofacBusinessModule());
+});
 
 var app = builder.Build();
 

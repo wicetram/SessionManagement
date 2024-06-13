@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.WebUI", "Management.WebUI\Management.WebUI.csproj", "{3264E763-B086-46BB-A55B-8BBEFE581A84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.WebUI", "Management.WebUI\Management.WebUI.csproj", "{3264E763-B086-46BB-A55B-8BBEFE581A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Entity", "Management.Entity\Management.Entity.csproj", "{3ACEC5AC-0B96-43A9-A789-2F98A4B8A618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.Entity", "Management.Entity\Management.Entity.csproj", "{3ACEC5AC-0B96-43A9-A789-2F98A4B8A618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.DataAccess", "Management.DataAccess\Management.DataAccess.csproj", "{F4DB3171-31A4-4A7F-B108-811DFE9C6313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.DataAccess", "Management.DataAccess\Management.DataAccess.csproj", "{F4DB3171-31A4-4A7F-B108-811DFE9C6313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Core", "Management.Core\Management.Core.csproj", "{C9803938-82F8-41E2-85F9-0A2E85B75F8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.Core", "Management.Core\Management.Core.csproj", "{C9803938-82F8-41E2-85F9-0A2E85B75F8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.Business", "Management.Business\Management.Business.csproj", "{EA313998-2005-4BAD-9A82-51FD43A463FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.Business", "Management.Business\Management.Business.csproj", "{EA313998-2005-4BAD-9A82-51FD43A463FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

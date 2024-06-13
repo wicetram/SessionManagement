@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Management.Core.DataAccess.EntityFramework;
+using Management.DataAccess.Abstract;
+using Management.DataAccess.Concrete.EntityFramework.Contexts;
+using Management.Entity.Concrete;
 
 namespace Management.DataAccess.Concrete.EntityFramework
 {
-    public class EfMerchantDal
+    public class EfMerchantDal : EntityRepositoryBase<MerchantContext, Merchant>, IMerchantDal
     {
     }
 }

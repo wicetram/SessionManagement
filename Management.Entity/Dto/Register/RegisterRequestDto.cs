@@ -21,5 +21,11 @@ namespace Management.Entity.Dto.Register
 
         [Required, Compare(nameof(Password)), DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = string.Empty;
+
+        [Required, DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; } = string.Empty;
+
+        [Required]
+        public string CitizenNo { get; set; } = string.Empty;
     }
 }

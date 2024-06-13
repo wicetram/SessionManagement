@@ -7,4 +7,12 @@
     <UserSecretsId>0304a6d4-8839-45bf-9acb-a93ca97f37fc</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Management.Business\Management.Business.csproj" />
+  </ItemGroup>
+
 </Project>

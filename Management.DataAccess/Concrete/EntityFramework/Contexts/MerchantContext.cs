@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Management.DataAccess.Concrete.EntityFramework.Contexts
 {
-    public class DatabaseContext : DbContext
+    public class MerchantContext : DbContext
     {
-        private static string? Connection => ConfigurationService.GetConnectionString("MyConn");
+        private static string? Connection => ConfigurationService.GetConnectionString("MerchantDb");
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,6 +16,6 @@ namespace Management.DataAccess.Concrete.EntityFramework.Contexts
             }
         }
 
-        public DbSet<MerchantDto> MerchantList { get; set; }
+        public DbSet<Merchant> MerchantList { get; set; }
     }
 }
