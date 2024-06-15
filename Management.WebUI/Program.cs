@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Management.Business.DependencyResolvers.Autofac;
+using Management.WebUI.Business.DepencencyResolvers.Autofac;
 using Management.WebUI.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterModule(new AutofacBusinessModule());
+    containerBuilder.RegisterModule(new AutofacWebUIBusinessModule());
 });
 
 var app = builder.Build();
