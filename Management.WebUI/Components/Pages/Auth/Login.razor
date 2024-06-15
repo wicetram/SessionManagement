@@ -1,8 +1,6 @@
 ﻿@page "/login"
 @layout EmptyLayout
-
-@inject IAuthServiceWebUI auth
-@inject NavigationManager NavMan
+@rendermode InteractiveServer
 
 <div class="container-fluid">
     <div class="row min-vh-100 d-flex align-items-center justify-content-center">
@@ -55,14 +53,16 @@
 
     private async Task HandleValidSubmit()
     {
-        var response = await auth.Login(loginModel);
+        var response = await Auth.Login(loginModel);
         if (response.Result)
         {
-                NavMan.NavigateTo("/");
+            var customAuthStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+            customAuthStateProvider.UpdateAuthenticationState(response.JWT);
+            NavMan.NavigateTo("/", forceLoad: true);
         }
         else
         {
-            // Handle login failure (optional)
+            await JS.InvokeVoidAsync("alert", response.ResultMessage);
         }
     }
 }

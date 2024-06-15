@@ -1,30 +1,25 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 @inject NavigationManager NavMan
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<AuthorizeView>
-    <Authorized>
-        <div class="page">
-            <div class="sidebar">
-                <NavMenu />
+@if (isConnected)
+{
+    <div class="page">
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+
+        <main>
+            <div class="top-row px-4">
+                <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
             </div>
 
-            <main>
-                <div class="top-row px-4">
-                    <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-                </div>
-
-                <article class="content px-4">
-                    @Body
-                </article>
-            </main>
-        </div>
-    </Authorized>
-    <NotAuthorized>
-        <p>You are not authorized to view this page. Please <a href="/login">login</a>.</p>
-    </NotAuthorized>
-</AuthorizeView>
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
+    </div>
+}
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
@@ -33,19 +28,35 @@
 </div>
 
 @code {
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    private bool isConnected;
 
-    private bool isAuthenticated;
-
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var authState = await authenticationStateTask;
-        isAuthenticated = authState.User.Identity.IsAuthenticated;
-
-        if (!isAuthenticated)
+        if (firstRender)
         {
+            await CheckAuthenticationState();
+        }
+        else
+        {
+            await CheckAuthenticationState();
+        }
+    }
+
+    private async Task CheckAuthenticationState()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            isConnected = true;
+        }
+        else
+        {
+            isConnected = false;
             NavMan.NavigateTo("/login");
         }
+
+        StateHasChanged();
     }
 }

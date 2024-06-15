@@ -1,9 +1,14 @@
 ﻿using Management.Business.Abstract;
+using Management.Core.Utility;
 using Management.DataAccess.Abstract;
 using Management.Entity.Concrete;
 using Management.Entity.Dto;
 using Management.Entity.Dto.Login;
 using Management.Entity.Dto.Register;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Management.Business.Concrete
 {
@@ -48,7 +53,8 @@ namespace Management.Business.Concrete
                 ResultMessage = "Giriş başarılı",
                 Id = response.Id,
                 Company = response.Company,
-                Name = response.Name
+                Name = response.Name,
+                JWT = GenerateToken(response)
             };
         }
 
@@ -123,5 +129,38 @@ namespace Management.Business.Concrete
             Company = $"{register.Name} {register.Surname}",
             Status = true
         };
+
+        /// <summary>
+        /// JWT key üretir
+        /// </summary>
+        /// <param name="loginResponse"></param>
+        /// <returns></returns>
+        private static string GenerateToken(Merchant loginResponse)
+        {
+            var jwt = JWTKeyService.GetJWT();
+
+            if (jwt == null)
+            {
+                return string.Empty;
+            }
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var userClaims = new[]
+            {
+                new Claim(ClaimTypes.Name, loginResponse.Name!),
+                new Claim(ClaimTypes.Email, loginResponse.Email!),
+                new Claim(ClaimTypes.NameIdentifier, loginResponse.Id.ToString()!)
+            };
+
+            var token = new JwtSecurityToken(
+                issuer: jwt.Issuer!,
+                audience: jwt.Audience!,
+                claims: userClaims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: credentials
+                );
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }

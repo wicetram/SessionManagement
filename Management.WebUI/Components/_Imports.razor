@@ -1,5 +1,6 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
@@ -13,3 +14,10 @@
 @using Management.WebUI.Business.Abstract
 @using Management.Entity.Dto.Register
 @using Management.WebUI.Business.Concrete
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Management.WebUI.States
+
+@inject IJSRuntime JS
+@inject IAuthServiceWebUI Auth
+@inject NavigationManager NavMan
+@inject AuthenticationStateProvider AuthStateProvider
