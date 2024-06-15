@@ -1,0 +1,17 @@
+﻿@page "/logout"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavMan
+
+<h3>Logging out...</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (AuthenticationStateProvider is CustomAuthenticationStateProvider customAuthProvider)
+        {
+            customAuthProvider.Logout();
+        }
+
+        NavMan.NavigateTo("/login", true);
+    }
+}
