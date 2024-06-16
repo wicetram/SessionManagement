@@ -1,4 +1,4 @@
-﻿namespace Management.WebUI.States
+﻿namespace Management.WebUI.States.Static
 {
     public static class Constants
     {

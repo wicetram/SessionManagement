@@ -1,14 +1,18 @@
 ﻿@page "/"
+@using System.Security.Claims
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
 <AuthorizeView>
     <Authorized>
-        <h3>Hy, @context.User.Identity!.Name, Welcome</h3>
+        <h3>@context.User.Identity!.Name, Welcome</h3>
+        @if (context.User.Identity is ClaimsIdentity claimsIdentity)
+        {
+            <p>Merchant Id: @claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value</p>
+            <p>Email: @claimsIdentity.FindFirst(ClaimTypes.Email)?.Value</p>
+        }
     </Authorized>
     <NotAuthorized>
-        <h3>You are not logged In</h3>
+        <h3>You are not logged in</h3>
     </NotAuthorized>
 </AuthorizeView>

@@ -4,6 +4,7 @@ using Management.Business.DependencyResolvers.Autofac;
 using Management.WebUI.Business.DepencencyResolvers.Autofac;
 using Management.WebUI.Components;
 using Management.WebUI.States;
+using Management.WebUI.States.Static;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;
